@@ -367,6 +367,7 @@ const closeButton = document.querySelectorAll('.modal-close');
     if(member ==2){
       const team_name_value = document.getElementById("email").value
     }
+  console.log($(this).serialize());
   document.getElementById("team_name").value = team_name_value;
   e.preventDefault();
   $.ajax({
