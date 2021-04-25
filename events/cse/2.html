@@ -395,23 +395,30 @@ const closeButton = document.querySelectorAll('.modal-close');
          }
        }
        
-  });
+  }).always(function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
   document.getElementById("registrationForm").reset();
   document.getElementById("formTitle").innerHTML = "Member " + member
-  if (member <= totalMembers && counter == true)
+  if (member <= totalMembers && counter )
   {
     console.log('in if');
     document.getElementById("submitForm").style.display = "block";
     document.getElementById("addMember").innerHTML = "Add Member " +  member
     member++;
   }
-  else if(member > totalMembers && counter == true){
+  else if(member > totalMembers && counter ){
     console.log('in else if')
     document.getElementById("submitForm").style.display = "none";
     document.getElementById("addMember").innerHTML = "Done";
     document.getElementById("addMember").prop('disabled', true);
     
   }
+  else{
+    document.getElementById("submitForm").style.display = "block";
+    document.getElementById("addMember").innerHTML = "Add Member " +  (member-1);
+    document.getElementById("formTitle").innerHTML = "Member " + (member -1);
+  }
+  });
+  
   
   
 })
