@@ -317,7 +317,7 @@
 <input type="hidden" id="event_name" name="event_name" value="design mania">
 <input type="hidden" id="team_name" name="team_name" value=""> 
 <button type="submit" style="display: none;" id="submitForm" class="block text-center my-5 text-black-555 bg-yellow-555 p-3 duration-300 rounded-sm hover:bg-yellow-400 w-full">Done</button>
-<button type="submit" id="addMember" class="block text-center my-5 text-black-555 bg-yellow-555 p-3 duration-300 rounded-sm hover:bg-yellow-400 w-full">Add Member 2</button>
+<button type="submit" id="addMember" class="block text-center my-5 text-black-555 bg-yellow-555 p-3 duration-300 rounded-sm hover:bg-yellow-400 w-full">Add Member 1</button>
 
       </form> 
      </div> 
@@ -361,6 +361,7 @@ const closeButton = document.querySelectorAll('.modal-close');
     let team_name
   var totalMembers = 3
   var member = 2
+  counter = true;
   $( document ).ready(function() {
   $('#registrationForm').submit(function(e) { 
   document.getElementById("team_email").value = document.getElementById("team_name").value
@@ -369,25 +370,47 @@ const closeButton = document.querySelectorAll('.modal-close');
        type: 'POST',
        url: 'https://i-gnez.herokuapp.com/register',
        data: $(this).serialize(),
-       complete:  console.log('completed'),
-       success:function (response) {
-        console.log(response.responseText);
-    },
-       error: function (jqXHR, exception) {
-    console.log(jqXHR);},
+       statusCode: {
+         422:function (response) {
+           console.log(response);
+           counter = false;
+           alert('Invalid data entered into the form')
+         },
+         409:function (response){
+           counter = false;
+           
+          alert('You have already registered for this event')
+         },
+         400:function (response){
+           counter = false;
+           alert('The event does not exist')
+         },
+         200:function(response){
+           counter = false;
+           alert('You have successfully registered for this event. Please check your inbox')
+         }
+       }
+       
   });
   document.getElementById("registrationForm").reset();
   document.getElementById("formTitle").innerHTML = "Member " + member
-  if (member < totalMembers)
+  if (member <= totalMembers && counter)
   {
     document.getElementById("submitForm").style.display = "block";
-    document.getElementById("addMember").innerHTML = "Add Member " +  (member + 1)
+    document.getElementById("addMember").innerHTML = "Add Member " +  member
+    member++;
+  }
+  else if(member > totalMembers && counter){
+    document.getElementById("submitForm").style.display = "none";
+    document.getElementById("addMember").innerHTML = "Done";
+    document.getElementById("addMember").prop('disabled', true);
+    
   }
   else{
-    document.getElementById("submitForm").style.display = "none";
-    document.getElementById("addMember").innerHTML = "Done"
+    document.getElementById("submitForm").style.display = "block";
+    document.getElementById("addMember").innerHTML = "Add Member " +  (member-1)
   }
-  member++;
+  
 })
 });
 </script>
