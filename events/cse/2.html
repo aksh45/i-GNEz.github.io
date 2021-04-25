@@ -391,7 +391,9 @@ const closeButton = document.querySelectorAll('.modal-close');
          },
          200:function(response){
            console.log(member);
-          if (member <= totalMembers && counter )
+          
+           alert(member);
+           if (member <= totalMembers && counter )
             {
               console.log('in if');
   
@@ -399,7 +401,6 @@ const closeButton = document.querySelectorAll('.modal-close');
               document.getElementById("formTitle").innerHTML = "Member " + member
               member++;
             }
-           alert(member);
          }
        },
        
