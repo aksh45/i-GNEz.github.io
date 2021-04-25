@@ -361,13 +361,13 @@ const closeButton = document.querySelectorAll('.modal-close');
 
   var totalMembers = 3
   var member = 2
-  counter = false;
+  var counter = false;
+  var team_name_value;
   $( document ).ready(function() {
   $('#registrationForm').submit(function(e) { 
-    if(member ==2){
-      const team_name_value = document.getElementById("email").value
+    if(member == 2){
+        team_name_value = document.getElementById("email").value;
     }
-  console.log($(this).serialize());
   document.getElementById("team_name").value = team_name_value;
   e.preventDefault();
   $.ajax({
