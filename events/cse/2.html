@@ -316,6 +316,7 @@
 
 <input type="hidden" id="event_name" name="event_name" value="design mania">
 <input type="hidden" id="team_name" name="team_name" value=""> 
+
 <button type="submit" id="addMember" class="block text-center my-5 text-black-555 bg-yellow-555 p-3 duration-300 rounded-sm hover:bg-yellow-400 w-full">Add Member 1</button>
 
       </form> 
@@ -358,13 +359,12 @@ const closeButton = document.querySelectorAll('.modal-close');
 			}
 		}
 
-  
-  $( document ).ready(function() {
-  $('#registrationForm').submit(function(e) { 
-    var totalMembers = 3
+  var totalMembers = 3
   var member = 2
   var counter = false;
   var team_name_value;
+  $( document ).ready(function() {
+  $('#registrationForm').submit(function(e) { 
     if(member == 2){
         team_name_value = document.getElementById("team_email").value;
     }
@@ -390,8 +390,14 @@ const closeButton = document.querySelectorAll('.modal-close');
            alert('The event does not exist')
          },
          200:function(response){
-           counter = true;
-           console.log(counter+'success');
+          if (member <= totalMembers && counter )
+            {
+              console.log('in if');
+  
+              document.getElementById("addMember").innerHTML = "Add Member " +  member
+              document.getElementById("formTitle").innerHTML = "Member " + member
+              member++;
+            }
            alert('You have successfully registered for this event. Please check your inbox')
          }
        },
@@ -401,19 +407,21 @@ const closeButton = document.querySelectorAll('.modal-close');
   if (member <= totalMembers && counter )
   {
     console.log('in if');
-    document.getElementById("addMember").innerHTML = "Add Member " +  member;
-    document.getElementById("formTitle").innerHTML = "Member " + member;
+    document.getElementById("submitForm").style.display = "block";
+    document.getElementById("addMember").innerHTML = "Add Member " +  member
+    document.getElementById("formTitle").innerHTML = "Member " + member
     member++;
   }
   else if(member > totalMembers && counter ){
-    console.log('in else if');
+    console.log('in else if')
+    document.getElementById("submitForm").style.display = "none";
     document.getElementById("addMember").innerHTML = "Done";
     document.getElementById("addMember").prop('disabled', true);
     document.getElementById("formTitle").innerHTML = "Member " + member
     
   }
   else{
-    console.log(counter +'in else')
+    document.getElementById("submitForm").style.display = "block";
     document.getElementById("addMember").innerHTML = "Add Member " +  (member-1);
     document.getElementById("formTitle").innerHTML = "Member " + (member -1);
     member ++;
