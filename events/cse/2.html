@@ -401,32 +401,7 @@ const closeButton = document.querySelectorAll('.modal-close');
            alert('You have successfully registered for this event. Please check your inbox')
          }
        },
-       success:function(response){
-        document.getElementById("registrationForm").reset();
- 
-  if (member <= totalMembers && counter )
-  {
-    console.log('in if');
-    document.getElementById("submitForm").style.display = "block";
-    document.getElementById("addMember").innerHTML = "Add Member " +  member
-    document.getElementById("formTitle").innerHTML = "Member " + member
-    member++;
-  }
-  else if(member > totalMembers && counter ){
-    console.log('in else if')
-    document.getElementById("submitForm").style.display = "none";
-    document.getElementById("addMember").innerHTML = "Done";
-    document.getElementById("addMember").prop('disabled', true);
-    document.getElementById("formTitle").innerHTML = "Member " + member
-    
-  }
-  else{
-    document.getElementById("submitForm").style.display = "block";
-    document.getElementById("addMember").innerHTML = "Add Member " +  (member-1);
-    document.getElementById("formTitle").innerHTML = "Member " + (member -1);
-    member ++;
-  }
-       }
+       
        
   })
   
