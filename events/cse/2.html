@@ -390,6 +390,7 @@ const closeButton = document.querySelectorAll('.modal-close');
            alert('The event does not exist')
          },
          200:function(response){
+           console.log(member);
           if (member <= totalMembers && counter )
             {
               console.log('in if');
@@ -398,7 +399,7 @@ const closeButton = document.querySelectorAll('.modal-close');
               document.getElementById("formTitle").innerHTML = "Member " + member
               member++;
             }
-           alert('You have successfully registered for this event. Please check your inbox')
+           alert(member);
          }
        },
        
