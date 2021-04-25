@@ -366,7 +366,7 @@ const closeButton = document.querySelectorAll('.modal-close');
   $( document ).ready(function() {
   $('#registrationForm').submit(function(e) { 
     if(member == 2){
-        team_name_value = document.getElementById("email").value;
+        team_name_value = document.getElementById("team_email").value;
     }
   document.getElementById("team_name").value = team_name_value;
   e.preventDefault();
@@ -413,6 +413,7 @@ const closeButton = document.querySelectorAll('.modal-close');
   else{
     document.getElementById("submitForm").style.display = "block";
     document.getElementById("addMember").innerHTML = "Add Member " +  (member-1)
+    document.getElementById("formTitle").innerHTML = "Member " + (member-1)
   }
   
 })
