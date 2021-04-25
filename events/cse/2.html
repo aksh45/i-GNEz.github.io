@@ -17,6 +17,24 @@
   <meta name="theme-color" content="#101010">
   <meta name="theme-color" content="#101010">
   <style>
+    #pageloader
+{
+  background: rgba( 255, 255, 255, 0.8 );
+  display: none;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+#pageloader img
+{
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  position: absolute;
+  top: 50%;
+}
 		.animated {
 			-webkit-animation-duration: 1s;
 			animation-duration: 1s;
@@ -276,6 +294,9 @@
           </svg>
         </div>
       </div>
+      <div id="pageloader">
+        <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." />
+     </div>
       <div class="flex w-full pb-6 justify-center items-center rounded text-center text-gray-555">
         <form id="registrationForm" action="" method="POST" >
           <p id="formTitle" class="text-black-555">Member 1</p>
@@ -365,6 +386,7 @@ const closeButton = document.querySelectorAll('.modal-close');
   var team_name_value;
   $( document ).ready(function() {
   $('#registrationForm').submit(function(e) { 
+    $('#pageloader').show();
     if(member == 2){
         team_name_value = document.getElementById("team_email").value;
     }
@@ -377,20 +399,21 @@ const closeButton = document.querySelectorAll('.modal-close');
        statusCode: {
          422:function (response) {
            console.log(response);
-           
+           $("#pageloader").hide();
            alert('Invalid data entered into the form')
          },
          409:function (response){
            
-           
+          $("#pageloader").hide();
           alert('This member is already registered in this event')
          },
          400:function (response){
-           
+          $("#pageloader").hide();
            alert('The event does not exist')
          },
          200:function(response){
            console.log(member);
+           $("#pageloader").hide();
            if (member <= totalMembers)
             {
               console.log('in if');
