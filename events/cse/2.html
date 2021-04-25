@@ -400,21 +400,19 @@ const closeButton = document.querySelectorAll('.modal-close');
   document.getElementById("formTitle").innerHTML = "Member " + member
   if (member <= totalMembers && counter == true)
   {
+    console.log('in if');
     document.getElementById("submitForm").style.display = "block";
     document.getElementById("addMember").innerHTML = "Add Member " +  member
     member++;
   }
   else if(member > totalMembers && counter == true){
+    console.log('in else if')
     document.getElementById("submitForm").style.display = "none";
     document.getElementById("addMember").innerHTML = "Done";
     document.getElementById("addMember").prop('disabled', true);
     
   }
-  else{
-    document.getElementById("submitForm").style.display = "block";
-    document.getElementById("addMember").innerHTML = "Add Member " +  (member-1)
-    document.getElementById("formTitle").innerHTML = "Member " + (member-1)
-  }
+  
   
 })
 });
