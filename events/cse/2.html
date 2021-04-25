@@ -383,7 +383,7 @@ const closeButton = document.querySelectorAll('.modal-close');
          409:function (response){
            
            
-          alert('You have already registered for this event')
+          alert('This member is already registered in this event')
          },
          400:function (response){
            
@@ -391,8 +391,6 @@ const closeButton = document.querySelectorAll('.modal-close');
          },
          200:function(response){
            console.log(member);
-          
-           alert(member);
            if (member <= totalMembers)
             {
               console.log('in if');
@@ -401,6 +399,8 @@ const closeButton = document.querySelectorAll('.modal-close');
               document.getElementById("formTitle").innerHTML = "Member " + member
               member++;
             }
+           
+           
          }
        },
        
