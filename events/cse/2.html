@@ -391,6 +391,7 @@ const closeButton = document.querySelectorAll('.modal-close');
          },
          200:function(response){
            counter = true;
+           console.log(counter+'success');
            alert('You have successfully registered for this event. Please check your inbox')
          }
        },
@@ -412,7 +413,7 @@ const closeButton = document.querySelectorAll('.modal-close');
     
   }
   else{
-    
+    console.log(counter +'in else')
     document.getElementById("addMember").innerHTML = "Add Member " +  (member-1);
     document.getElementById("formTitle").innerHTML = "Member " + (member -1);
     member ++;
