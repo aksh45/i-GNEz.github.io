@@ -20,19 +20,30 @@
 
 <body class="text-white">
  
-  <nav id="header" class="fixed w-full z-20 top-0">
+  <div class="spinner-wrapper">
+    <div class="spinner" >
+  <div class="sk-chase">
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+  </div>
+</div>
+</div>
+    
 
+
+  <nav id="header" class="fixed w-full z-20 top-0">
     <div id="progress" class="h-1 z-40 top-0"
       style="background:linear-gradient(to right, #FFC100 var(--scroll), transparent 0);"></div>
-
     <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
-
       <div class="block lg:hidden pl-8 p-2">
 				<a class="text-yellow-555 text-base no-underline hover:no-underline" href="index.html">
           i-GNEz
 				</a>
 			</div>
-
       <div class="block lg:hidden pr-4">
         <button id="nav-toggle" class="flex items-center px-3 py-2 text-yellow-555 border-gray-600 focus:outline-none">
           <svg fill="text-yellow-555" viewBox="0 0 20 20" class="w-6 h-6 fill-current">
@@ -43,7 +54,6 @@
           </svg>
         </button>
       </div>
-
       <div
         class="w-full flex-grow p-4 lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-black-555 md:bg-transparent z-20"
         id="nav-content">
@@ -90,9 +100,9 @@
       </div>
       <div class="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3  justify-center">
         <div class="h-48 flex flex-wrap content-center">
-          <div><img class="inline-block mt-28 hidden md:block" src="images/left.png"></div>
-          <div><img class="inline-block" src="images/center.png"></div>
-          <div><img class="inline-block mt-28 hidden md:block" src="images/right.png"></div>
+          <div><img class="inline-block mt-28 hidden lg:block" src="images/left.png"></div>
+          <div><img class="inline-block p-8 md:p-0" src="images/center.png"></div>
+          <div><img class="inline-block mt-28 hidden lg:block" src="images/right.png"></div>
         </div>
       </div>
     </div>
@@ -177,8 +187,7 @@
         </div>
       </div>
     <div class="mx-auto md:max-w-2xl mt-6">
-
-      <div id="slidesDiv" class="relative rounded-lg border-2 border-gray-555">
+      <div id="slidesDiv" class="overflow-hidden relative rounded-lg border-2 border-gray-555">
         <a class="absolute left-0 inset-y-0 flex items-center px-4 text-white hover:text-yellow-555 cursor-pointer text-3xl font-extrabold"
           onclick="plusSlides(-1)">❮</a>
         <a class="absolute right-0 inset-y-0 flex items-center px-4 text-white hover:text-yellow-555 cursor-pointer text-3xl font-extrabold"
@@ -319,13 +328,9 @@
        type: 'POST',
        url: 'https://i-gnez.herokuapp.com/feedback',
        data: $(this).serialize(),
-       statusCode: {
-        200:function(response){
-          console.log(response);
-          alert('Thank you for providing your valuable feedback')
-        }
-      }
+       complete: alert('Thank you for providing your valuable feedback')
   });
+  document.getElementById("feedbackForm").reset();
 })
 </script>
 </html>
